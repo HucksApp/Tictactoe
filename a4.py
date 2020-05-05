@@ -1,6 +1,4 @@
-# NOTE: Until you fill in the TTTBoard class mypy is going
-# to give you multiple errors talking about unimplemented
-# class attributes, don't worry about this as you're working
+# NOTE:          TICKTACKTOE
 
 
 class TTTBoard:
@@ -13,17 +11,19 @@ class TTTBoard:
         played on
     """
     # initial state of the board
-    def __init__(self):
-        self.board =['*','*','*','*','*','*','*','*','*']
 
+    def __init__(self):
+        self.board = ['*', '*', '*', '*', '*', '*', '*', '*', '*']
 
     # the user Interface
     def __str__(self):
 
         return(
-            "----------\n" + "|"+  self.board[0] + "  " + self.board[1]  + "  " + self.board[2] + " " + "|\n" + "|--+--+--|\n" + "|"+ self.board[3] + "  "  + self.board[4]  + "  " + self.board[5] + " " + "|\n" + "|--+--+--|\n" + "|"+ self.board[6]  + "  " + self.board[7]  + "  " + self.board[8] + " " + "|\n" + "----------"
+            "----------\n" + "|" + self.board[0] + "  " + self.board[1] + "  " + self.board[2] + " " + "|\n" + "|--+--+--|\n" + "|" + self.board[3] + "  " + self.board[4] +
+            "  " + self.board[5] + " " + "|\n" + "|--+--+--|\n" + "|" + self.board[6] +
+            "  " + self.board[7] + "  " +
+            self.board[8] + " " + "|\n" + "----------"
         )
-        
 
     def make_move(self, player, pos):
         if int(pos) > 8 or int(pos) < 0 or self.board[int(pos)] != "*":
@@ -32,53 +32,46 @@ class TTTBoard:
             self.board[pos] = player
             return True
 
-    def find_positions(self,player):
-        index_pos= []
-       
-        
-    
-        for index in range (len(self.board)):
+    def find_positions(self, player):
+        index_pos = []
+
+        for index in range(len(self.board)):
             if self.board[index] == player:
                 index_pos.append(index)
-            
-        print(index_pos)
+
         return index_pos
 
-
-    
-    def has_won(self, player): 
+    def has_won(self, player):
         played_positions = self.find_positions(player)
-        print('here')
-        #print(played_positions)
+
         if len(played_positions) >= 3:
-            
-            if played_positions[0] == 0 :
+
+            if played_positions[0] == 0:
                 if played_positions[1] == 1:
 
                     if played_positions[2] == 2:
                         return True
-                    else :
+                    else:
                         return False
 
                 elif played_positions[1] == 3:
 
                     if played_positions[2] == 6:
                         return True
-                    else :
+                    else:
                         return False
-                    
-                
-                elif played_positions[1] == 4 :
+
+                elif played_positions[1] == 4:
                     if played_positions[2] == 8:
                         return True
-                    else :
+                    else:
                         return False
             elif played_positions[0] == 1:
                 if played_positions[1] == 4:
 
                     if played_positions[2] == 6:
                         return True
-                    else :
+                    else:
                         return False
                 else:
                     return False
@@ -88,32 +81,31 @@ class TTTBoard:
 
                     if played_positions[2] == 6:
                         return True
-                    else :
+                    else:
                         return False
                 elif played_positions[1] == 5:
                     if played_positions[2] == 8:
                         return True
-                    else :
+                    else:
                         return False
-                
+
             elif played_positions[0] == 3:
                 if played_positions[1] == 4:
 
                     if played_positions[2] == 5:
                         return True
-                    else :
+                    else:
                         return False
                 else:
                     return False
-            
+
             elif played_positions[0] == 6:
                 if played_positions[1] == 7:
-                    print('here 1')
 
                     if played_positions[2] and played_positions[2] == 8:
-                        
+
                         return True
-                    else :
+                    else:
                         return False
                 else:
                     return False
@@ -121,22 +113,15 @@ class TTTBoard:
                 return False
         else:
             return False
-                    
-    
+
     def game_over(self):
-        if self.has_won("X") or self.has_won("O") or self.board.index("*") == -1 :
+        if self.has_won("X") or self.has_won("O") or self.board.index("*") == -1:
             return True
         else:
             return False
 
-    
     def clear(self):
-        self.board = ['*','*','*','*','*','*','*','*','*'] 
-
-
-
-
-
+        self.board = ['*', '*', '*', '*', '*', '*', '*', '*', '*']
 
 
 def play_tic_tac_toe() -> None:
